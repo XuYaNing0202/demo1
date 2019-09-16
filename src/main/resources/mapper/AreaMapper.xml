@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.AreaMapper">
+
+    <select id="areaList" resultType="area">
+        select * from area
+    </select>
+
+    <insert id="insertArea">
+        insert into area
+        (area_name, parent_id)
+        values
+        (#{areaName},#{parentId})
+    </insert>
+
+    <delete id="deleteArea">
+        delete from area
+        <where>
+            id=#{id}
+        </where>
+    </delete>
+
+    <update id="updateArea">
+        update area
+        <set>
+            area_name=#{areaName}
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.UserMapper">
+
+    <select id="logIn" resultType="user">
+        select * from user
+        <where>
+            <if test="account!=null and account!=''">
+                account=#{account}
+            </if>
+            <if test="password!=null and password!=''">
+                and password=#{password}
+            </if>
+        </where>
+    </select>
+
+    <select id="ztreeShowAll" resultType="user">
+        select * from user
+        <where>
+            <if test="id>=0 and id!=null">
+                area_id=#{id}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertUser">
+        insert into user
+        (username, password, account, permission,area_id)
+        values
+        (#{username},#{password},#{account},#{permission},#{areaId})
+    </insert>
+
+</mapper>

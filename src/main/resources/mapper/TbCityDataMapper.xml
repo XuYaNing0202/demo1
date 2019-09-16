@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.TbCityDataMapper">
+    <select id="cityDataList" resultType="tbCityData">
+        select * from tb_city_data
+        <where>
+            <if test="startTime!=null and endTime!=null">
+                create_time between #{startTime} and #{endTime}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertCityData">
+        insert into tb_city_data
+        (institution_name, planned_quantity, actual_quantity, exacutive_rate, new_client, old_client, intention_client, estimated_premium, create_time, area_id)
+        values
+        (#{institutionName},10,#{actualQuantity},100,#{newClient},#{oldClient},#{intentionClient},#{estimatedPremium},now(),10)
+    </insert>
+
+</mapper>

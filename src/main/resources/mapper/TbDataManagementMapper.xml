@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.TbDataManagementMapper">
+
+    <insert id="forecastData">
+        insert into tb_data_management
+        (plan_name, plan_number, createtime, whether_report)
+        values
+        (#{planName},#{planNumber},now(),#{whetherReport})
+    </insert>
+
+    <select id="listDataManagement" resultType="tbDataManagement">
+        select * from tb_data_management where whether_report = 0
+    </select>
+
+    <update id="report">
+        update tb_data_management
+        <set>
+            whether_report = 1
+            <where>
+                id = #{id}
+            </where>
+        </set>
+    </update>
+
+</mapper>
